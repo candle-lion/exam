@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+        namespace="com.stingy.person.exam.dao.mapper.LoginUserDetailsService">
+
+    <resultMap
+            type="com.stingy.person.exam.dao.entity.LoginUserDetail"
+            id="loginUser">
+        <result column="USER_NAME" property="username"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="ROLE_NAME" property="roleName"/>
+    </resultMap>
+
+    <select id="loadUserByUsername" parameterType="string" resultMap="loginUser">
+        SELECT user.USER_NAME,user.PASSWORD,role.NAME ROLE_NAME FROM TBL_USER user, LIBRARY_ROLE role WHERE user.RID=role.ID AND user.USER_NAME=#{username}
+    </select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+        namespace="com.stingy.person.exam.dao.mapper.UserMapper">
+
+    <resultMap
+            type="com.stingy.person.exam.dao.entity.QueryUserEntity"
+            id="user">
+        <id column="ID" property="id"/>
+        <result column="USER_NAME" property="username"/>
+        <result column="NAME" property="name"/>
+        <result column="SEX" property="sex"/>
+        <result column="ID_CARD" property="idCard"/>
+        <result column="MOBILE" property="mobile"/>
+        <result column="EMAIL" property="email"/>
+        <result column="ROLE_NAME" property="roleName"/>
+    </resultMap>
+
+    <select id="queryUser" resultMap="user">
+        SELECT user.ID,user.USER_NAME,user.NAME,user.SEX,user.ID_CARD,user.MOBILE,user.EMAIL,role.NAME ROLE_NAME FROM TBL_USER user, LIBRARY_ROLE role WHERE user.RID=role.ID
+    </select>
+
+    <select id="queryUserById" parameterType="string" resultType="com.stingy.person.exam.dao.entity.QueryUserEntity">
+        SELECT user.ID,user.USER_NAME,user.NAME,user.SEX,user.ID_CARD,user.MOBILE,user.EMAIL,role.NAME ROLE_NAME FROM TBL_USER user, LIBRARY_ROLE role WHERE user.RID=role.ID AND user.ID=#{id}
+    </select>
+
+    <insert id="addUser" parameterType="com.stingy.person.exam.dao.entity.CreateUserEntity">
+        INSERT INTO TBL_USER(ID, USER_NAME, NAME, PASSWORD, SEX, ID_CARD, MOBILE, EMAIL, RID) VALUES (#{id},#{username},#{name},#{password},#{sex},#{idCard},#{mobile},#{email},#{roleId});
+    </insert>
+
+    <update id="forgotPassword" parameterType="com.stingy.person.exam.dao.entity.ForgotPasswordEntity">
+        UPDATE TBL_USER SET PASSWORD=#{password} WHERE USER_NAME=#{username} AND ID_CARD=#{idCard}
+    </update>
+</mapper>

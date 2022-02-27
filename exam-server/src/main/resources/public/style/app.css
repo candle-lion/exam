@@ -1,0 +1,25 @@
+body {
+    background-image: url("../image/background.jpg");
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.logo {
+    background-image: url(../image/logo.png);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.webix_template {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 0px 0pt;
+}
+
+.library-home:hover {
+    cursor: pointer;
+}

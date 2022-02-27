@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- JQuery -->
+    <script src="module/jquery/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.min.js"></script>
+</head>
+<body id="video_resources">
+<script>
+    if (Hls.isSupported()) {
+        // 添加视频资源数组
+        let videoResources = [];
+        videoResources.push({"id":"1", "title": "草原精灵", "m3u8_url": "https://m001.m1m2m3u8mp4.com/G0107/md27/md27.m3u8"});
+        videoResources.push({"id":"2", "title": "E奶女教師遭体育系坏学生下迷药硬上", "m3u8_url": "https://m001.m1m2m3u8mp4.com/E0727/0076/0076.m3u8"});
+
+        videoResources.forEach(function(videoResource) {
+            $("#video_resources").append("<div><p>" + videoResource.title + "</p><video id=\"" + videoResource.id + "\" muted controls></video></div>");
+            let video = document.getElementById(videoResource.id);
+            let hls = new Hls();
+            hls.loadSource(videoResource.m3u8_url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                // video.play();
+            });
+        });
+    }
+</script>
+</body>
+</HTML>

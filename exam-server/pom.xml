@@ -570,7 +570,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.sun.example.mqtt.MqttUtil</mainClass>
+                            <mainClass>com.stingy.person.exam.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
